@@ -1,45 +1,64 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import { Close as CloseIcon, Search as SearchIcon } from '@mui/icons-material';
+import {
+  AppBar,
+  IconButton,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
+import { blue } from '@mui/material/colors';
+import { useTheme } from '@mui/material/styles';
+import SearchField from './SearchField';
+import SearchContext from './contexts/SearchContext';
+import { OmdbSearchResult } from './types';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [searchResult, setSearchResult] = useState<OmdbSearchResult[]>([]);
+  const [showSearchBar, setShowSearchBar] = useState(false);
+
+  const theme = useTheme();
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
-}
+    <SearchContext.Provider value={{ searchResult, setSearchResult }}>
+      <AppBar position="static">
+        <Toolbar sx={
+          useMediaQuery(theme.breakpoints.up('sm'))
+            ? {
+              display: 'grid',
+              gridTemplateColumns: '1fr 2fr 1fr',
+            }
+            : {
+              display: 'flex',
+              gap: 1,
+              justifyContent: 'space-between',
+            }
+        }>
+          {!showSearchBar && (
+            <Typography variant="h4" component="div">
+              Movie explorer
+            </Typography>
+          )}
 
-export default App
+          {(useMediaQuery(theme.breakpoints.not('xs')) || showSearchBar) && <SearchField />}
+
+          {useMediaQuery(theme.breakpoints.only('xs')) &&
+            <IconButton
+              aria-label="submit search"
+              onClick={() => setShowSearchBar(!showSearchBar)}
+            >
+              {
+                showSearchBar
+                  ? <CloseIcon sx={{ color: blue[100] }} />
+                  : <SearchIcon sx={{ color: blue[100] }} />
+              }
+            </IconButton>
+          }
+        </Toolbar>
+      </AppBar>
+
+      <Outlet />
+    </SearchContext.Provider>
+  );
+}
