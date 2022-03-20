@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
-import { OmdbSearchResult } from '../../types';
+import { OmdbSearchResult } from '~/types';
 
 type SearchContext = {
   searchResult: OmdbSearchResult[];

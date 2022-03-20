@@ -1,13 +1,14 @@
 import { FormEvent, useContext, useState } from 'react';
 import { ArrowForward as ArrowForwardIcon, Search as SearchIcon } from '@mui/icons-material';
 import {
+  alpha,
   Autocomplete,
   IconButton,
   InputAdornment,
+  styled,
   TextField,
 } from '@mui/material';
 import { blue } from '@mui/material/colors';
-import { alpha, styled } from '@mui/material/styles';
 import axios from 'axios';
 import SearchContext from './contexts/SearchContext';
 import { OmdbSearchResponse } from './types';
