@@ -1,6 +1,6 @@
 type NumberString = `${number}`;
 
-type BooleanString = 'True' | 'False'
+type BooleanString = 'True' | 'False';
 
 export type OmdbSearchResult = {
   Title: string;

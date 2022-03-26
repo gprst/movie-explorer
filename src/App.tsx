@@ -6,7 +6,6 @@ import {
   IconButton,
   Link,
   Toolbar,
-  Typography,
   useMediaQuery,
 } from '@mui/material';
 import { blue } from '@mui/material/colors';
@@ -22,20 +21,23 @@ export default function App() {
   const theme = useTheme();
 
   return (
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
     <SearchContext.Provider value={{ searchResult, setSearchResult }}>
       <AppBar position="static">
-        <Toolbar sx={
-          useMediaQuery(theme.breakpoints.up('sm'))
-            ? {
-              display: 'grid',
-              gridTemplateColumns: '1fr 2fr 1fr',
-            }
-            : {
-              display: 'flex',
-              gap: 1,
-              justifyContent: 'space-between',
-            }
-        }>
+        <Toolbar
+          sx={
+            useMediaQuery(theme.breakpoints.up('sm'))
+              ? {
+                display: 'grid',
+                gridTemplateColumns: '1fr 2fr 1fr',
+              }
+              : {
+                display: 'flex',
+                gap: 1,
+                justifyContent: 'space-between',
+              }
+          }
+        >
           {!showSearchBar && (
             <Link
               variant="h4"
@@ -49,7 +51,7 @@ export default function App() {
 
           {(useMediaQuery(theme.breakpoints.not('xs')) || showSearchBar) && <SearchField />}
 
-          {useMediaQuery(theme.breakpoints.only('xs')) &&
+          {useMediaQuery(theme.breakpoints.only('xs')) && (
             <IconButton
               aria-label="submit search"
               onClick={() => setShowSearchBar(!showSearchBar)}
@@ -60,7 +62,7 @@ export default function App() {
                   : <SearchIcon sx={{ color: blue[100] }} />
               }
             </IconButton>
-          }
+          )}
         </Toolbar>
       </AppBar>
 

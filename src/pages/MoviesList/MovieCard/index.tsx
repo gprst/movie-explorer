@@ -1,6 +1,10 @@
-import { Box, Card, CardContent, styled, Typography } from '@mui/material';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {
+  Box,
+  Card,
+  styled,
+  Typography,
+} from '@mui/material';
 import { OmdbSearchResult } from '~/types';
 
 type Props = {
@@ -12,7 +16,7 @@ const CroppedPoster = styled('img')(({ theme }) => ({
   maxWidth: theme.spacing(12),
 }));
 
-const MovieInfo = ({ movie }: Props) => {
+function MovieInfo({ movie }: Props) {
   const {
     imdbID,
     Poster,
@@ -24,7 +28,7 @@ const MovieInfo = ({ movie }: Props) => {
       {Object.entries(movieInfo).map(([key, value]) => (
         <Box key={key} sx={{ display: 'flex', gap: 1 }}>
           <Typography sx={{ fontWeight: 'bold' }}>
-            {key}:
+            {`${key}:`}
           </Typography>
 
           <Typography>
@@ -34,18 +38,22 @@ const MovieInfo = ({ movie }: Props) => {
       ))}
     </>
   );
-};
+}
 
 export default function MovieCard({ movie }: Props) {
+  const navigate = useNavigate();
+
   return (
     <Card sx={{ padding: 2, display: 'flex', flexDirection: 'row', gap: 2 }}>
-      <Box sx={(theme) => ({
-        display: 'flex',
-        width: theme.spacing(12),
-        height: theme.spacing(12),
-        alignItems: 'center',
-        justifyContent: 'center',
-      })}>
+      <Box
+        sx={(theme) => ({
+          display: 'flex',
+          width: theme.spacing(12),
+          height: theme.spacing(12),
+          alignItems: 'center',
+          justifyContent: 'center',
+        })}
+      >
         <CroppedPoster src={movie.Poster} />
       </Box>
 

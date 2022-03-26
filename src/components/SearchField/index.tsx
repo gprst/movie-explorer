@@ -16,7 +16,7 @@ import { OmdbSearchResponse } from '~/types';
 
 const StyledSearchInput = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-root': {
-    color: theme.palette.common.white ,
+    color: theme.palette.common.white,
     '& fieldset': {
       border: '0',
     },
@@ -33,7 +33,7 @@ const StyledSearchInput = styled(TextField)(({ theme }) => ({
 export default function SearchField() {
   const [search, setSearch] = useState('');
 
-  const { setSearchResult } = useContext(SearchContext)
+  const { setSearchResult } = useContext(SearchContext);
 
   const navigate = useNavigate();
 
@@ -57,6 +57,7 @@ export default function SearchField() {
         options={[]}
         renderInput={(params) => (
           <StyledSearchInput
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...params}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -65,10 +66,12 @@ export default function SearchField() {
               type: 'search',
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon sx={{
-                    color: blue[100],
-                    marginLeft: 1,
-                  }} />
+                  <SearchIcon
+                    sx={{
+                      color: blue[100],
+                      marginLeft: 1,
+                    }}
+                  />
                 </InputAdornment>
               ),
               endAdornment: (

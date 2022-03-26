@@ -1,4 +1,4 @@
-import { Container, Stack, Typography } from '@mui/material';
+import { Container, Stack } from '@mui/material';
 import { useContext } from 'react';
 import SearchContext from '~/contexts/SearchContext';
 import MovieCard from './MovieCard';
