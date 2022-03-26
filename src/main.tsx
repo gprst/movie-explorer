@@ -7,8 +7,9 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import CssBaseline from '@mui/material/CssBaseline';
 import App from './App'
-import MovieDetailsPage from './pages/MovieDetails/MovieDetailsPage';
-import MoviesPage from './pages/Movies/MoviesPage';
+import Landing from './pages/Landing';
+import MovieDetails from './pages/MovieDetails';
+import MoviesList from './pages/MoviesList';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,8 +17,9 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="" element={<MoviesPage />} />
-          <Route path="/movie/:id" element={<MovieDetailsPage />} />
+          <Route path="" element={<Landing />} />
+          <Route path="/movies" element={<MoviesList />} />
+          <Route path="/movies/:id" element={<MovieDetails />} />
         </Route>
       </Routes>
     </BrowserRouter>

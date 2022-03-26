@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { blue } from '@mui/material/colors';
 import { useTheme } from '@mui/material/styles';
-import SearchField from './SearchField';
+import SearchField from './components/SearchField';
 import SearchContext from './contexts/SearchContext';
 import { OmdbSearchResult } from './types';
 
