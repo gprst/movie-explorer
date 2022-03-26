@@ -1,4 +1,5 @@
 import { FormEvent, useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowForward as ArrowForwardIcon, Search as SearchIcon } from '@mui/icons-material';
 import {
   alpha,
@@ -10,12 +11,12 @@ import {
 } from '@mui/material';
 import { blue } from '@mui/material/colors';
 import axios from 'axios';
-import SearchContext from './contexts/SearchContext';
-import { OmdbSearchResponse } from './types';
+import SearchContext from '~/contexts/SearchContext';
+import { OmdbSearchResponse } from '~/types';
 
 const StyledSearchInput = styled(TextField)(({ theme }) => ({
   '& .MuiOutlinedInput-root': {
-    color: theme.palette.common.white,
+    color: theme.palette.common.white ,
     '& fieldset': {
       border: '0',
     },
@@ -34,6 +35,8 @@ export default function SearchField() {
 
   const { setSearchResult } = useContext(SearchContext)
 
+  const navigate = useNavigate();
+
   const fetchResult = async (e: FormEvent) => {
     e.preventDefault();
 
@@ -44,6 +47,8 @@ export default function SearchField() {
     );
 
     setSearchResult(result.data.Search);
+
+    navigate('/movies');
   };
 
   return (
