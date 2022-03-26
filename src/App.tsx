@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link as RouterLink, Outlet } from 'react-router-dom';
 import { Close as CloseIcon, Search as SearchIcon } from '@mui/icons-material';
 import {
   AppBar,
   IconButton,
+  Link,
   Toolbar,
   Typography,
   useMediaQuery,
@@ -36,9 +37,14 @@ export default function App() {
             }
         }>
           {!showSearchBar && (
-            <Typography variant="h4" component="div">
+            <Link
+              variant="h4"
+              component={RouterLink}
+              sx={{ color: 'white', textDecoration: 'none' }}
+              to="/"
+            >
               Movie explorer
-            </Typography>
+            </Link>
           )}
 
           {(useMediaQuery(theme.breakpoints.not('xs')) || showSearchBar) && <SearchField />}
