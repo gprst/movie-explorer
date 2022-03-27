@@ -31,3 +31,9 @@ npm run dev
 ```
 
 Enjoy!
+
+## Todo
+
+- [ ] Add unit tests (obviously) once you're comfortable with React testing library + Vite
+- [ ] Add error messages for user feedback (instead of simply redirecting to the homepage)
+- [ ] Change theming to make the app sexier (some red?)
