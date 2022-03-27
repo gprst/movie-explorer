@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Card,
+  CardActionArea,
   styled,
   Typography,
 } from '@mui/material';
@@ -44,22 +45,32 @@ export default function MovieCard({ movie }: Props) {
   const navigate = useNavigate();
 
   return (
-    <Card sx={{ padding: 2, display: 'flex', flexDirection: 'row', gap: 2 }}>
-      <Box
-        sx={(theme) => ({
+    <CardActionArea>
+      <Card
+        sx={{
+          padding: 2,
           display: 'flex',
-          width: theme.spacing(12),
-          height: theme.spacing(12),
-          alignItems: 'center',
-          justifyContent: 'center',
-        })}
+          flexDirection: 'row',
+          gap: 2,
+        }}
+        onClick={() => navigate(`/movies/${movie.imdbID}`)}
       >
-        <CroppedPoster src={movie.Poster} />
-      </Box>
+        <Box
+          sx={(theme) => ({
+            display: 'flex',
+            width: theme.spacing(12),
+            height: theme.spacing(12),
+            alignItems: 'center',
+            justifyContent: 'center',
+          })}
+        >
+          <CroppedPoster src={movie.Poster} />
+        </Box>
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <MovieInfo movie={movie} />
-      </Box>
-    </Card>
+        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <MovieInfo movie={movie} />
+        </Box>
+      </Card>
+    </CardActionArea>
   );
 }
